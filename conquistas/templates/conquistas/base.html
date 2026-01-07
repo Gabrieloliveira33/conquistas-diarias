@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Conquistas Diárias{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'conquistas/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>Conquistas Diárias</h1>
+
+    <nav>
+        {% if user.is_authenticated %}
+            <span style="margin-right: 1rem; color: var(--text-muted);">
+                Olá, {{ user.username }}
+            </span>
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" style="background: none; border: none; color: var(--primary); cursor: pointer;">
+        Sair
+    </button>
+</form>
+
+        {% else %}
+            <a href="{% url 'login' %}" class="btn">Entrar</a>
+        {% endif %}
+    </nav>
+</header>
+
+
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

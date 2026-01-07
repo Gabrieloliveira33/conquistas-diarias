@@ -1,0 +1,17 @@
+{% extends 'conquistas/base.html' %}
+
+{% block content %}
+<h2>Editar Conquista</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-container">
+        {{ form.as_p }}
+    </div>
+
+    <div style="margin-top: 2rem; display: flex; gap: 1rem; align-items: center;">
+        <button type="submit">Salvar Alterações</button>
+        <a href="{% url 'conquistas:lista' %}" style="color: var(--text-muted); font-size: 0.9rem;">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

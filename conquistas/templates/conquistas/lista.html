@@ -1,0 +1,36 @@
+{% extends 'conquistas/base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2 style="margin: 0; border: none; padding: 0;">Minhas Conquistas</h2>
+    <a href="{% url 'conquistas:criar' %}" class="btn" style="background: var(--primary); color: var(--bg-card);">+ Nova Conquista</a>
+</div>
+
+{% if conquistas %}
+    <ul>
+        {% for conquista in conquistas %}
+            <li>
+                <strong style="font-size: 1.1rem; color: var(--text-main);">{{ conquista.titulo }}</strong>
+                <p style="color: var(--text-muted); margin: 0.25rem 0;">{{ conquista.descricao }}</p>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Data: {{ conquista.data|date:"d/m/Y" }}</div>
+
+                {% if conquista.concluida %}
+                    <span class="status-badge status-concluido">Concluída</span>
+                {% else %}
+                    <span class="status-badge status-pendente">Pendente</span>
+                {% endif %}
+
+                <div class="item-actions">
+                    <a href="{% url 'conquistas:editar' conquista.id %}">Editar</a>
+                    <span style="color: var(--border); margin: 0 0.5rem;">|</span>
+                    <a href="{% url 'conquistas:excluir' conquista.id %}" style="color: var(--danger);">Excluir</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div class="empty-state">
+        <p>Nenhuma conquista cadastrada ainda.</p>
+    </div>
+{% endif %}
+{% endblock %}

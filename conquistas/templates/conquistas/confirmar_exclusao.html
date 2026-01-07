@@ -1,0 +1,18 @@
+{% extends 'conquistas/base.html' %}
+
+{% block content %}
+<h2 style="color: var(--danger);">Confirmar exclusão</h2>
+
+<p style="font-size: 1.1rem; margin-bottom: 2rem;">
+    Você tem certeza que deseja remover permanentemente a conquista: 
+    <strong>"{{ conquista.titulo }}"</strong>?
+</p>
+
+<form method="post">
+    {% csrf_token %}
+    <div style="display: flex; gap: 1rem; align-items: center;">
+        <button type="submit" class="btn-delete">Confirmar Exclusão</button>
+        <a href="{% url 'conquistas:lista' %}" style="color: var(--text-muted);">Desistir</a>
+    </div>
+</form>
+{% endblock %}
