@@ -36,7 +36,8 @@ Antes de começar, você precisa ter instalado:
 - **pip** (já incluso no Python)
 - **Git**
 
-Verifique as versões:
+## Verifique as versões
+
 ```bash
 python --version
 pip --version
